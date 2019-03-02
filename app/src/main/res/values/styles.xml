@@ -1,0 +1,33 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+
+    <style name="MyPopWindow">
+        <item name="android:windowEnterAnimation">@anim/pop_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_out</item>
+    </style>
+
+    <style name="MyPopWindowMore">
+        <item name="android:windowEnterAnimation">@anim/pop_more_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_more_out</item>
+    </style>
+
+    <style name="MyPopWindowMainLocation">
+        <item name="android:windowEnterAnimation">@anim/pop_main_location_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_main_location_out</item>
+    </style>
+
+    <style name="RouteSearchActivity" parent="AppTheme">
+        <item name="android:windowEnterAnimation">@transition/transition_route_search_in</item>
+        <item name="android:windowExitAnimation">@transition/transition_route_search_out</item>
+    </style>
+
+</resources>
