@@ -47,6 +47,10 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".activity.SmsActivity" android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.NearbyActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

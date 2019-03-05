@@ -146,6 +146,10 @@ class MainActivity : AppCompatActivity(), PoiSearch.OnPoiSearchListener,
         layoutSms.setOnClickListener {
             startActivity(Intent(this, SmsActivity::class.java))
         }
+
+        constraintLayout2.setOnClickListener {
+            startActivity(Intent(this, NearbyActivity::class.java))
+        }
     }
 
     private fun alphaAni(start: Float, end: Float) {
