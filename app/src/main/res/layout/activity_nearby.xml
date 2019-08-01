@@ -42,7 +42,7 @@
                     android:background="@drawable/bg_nearby"
                     android:elevation="3dp"
                     android:paddingStart="16dp"
-                    android:paddingTop="@dimen/sp_16"
+                    android:paddingTop="16sp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="10dp">
 
