@@ -56,7 +56,7 @@ class SearchActivity : AppCompatActivity(), Inputtips.InputtipsListener {
                 }.adapter = SearchAdapter(items)
                 .apply {
                     adapter = this
-                    setOnItemClickListener { adapter, view, position ->
+                    setOnItemClickListener { _, _, position ->
                         val tip = items[position].t as Tip
                         startActivity<AimsMapDetailActivity>(Pair("tip" , tip))
                     }
@@ -101,7 +101,6 @@ class SearchActivity : AppCompatActivity(), Inputtips.InputtipsListener {
             }
         })
     }
-
 
     override fun onGetInputtips(tipList: MutableList<Tip>?, p1: Int) {
         items.clear()

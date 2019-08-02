@@ -59,8 +59,8 @@ class RouteSearchActivity : AppCompatActivity() {
 
     private fun initTab() {
         val viewList = ArrayList<SearchFragment>()
-        for (item in RouteSearchMorePop.listStr) {
-            tabLayout.addTab(tabLayout.newTab().setText(item))
+        RouteSearchMorePop.listStr.forEach {
+            tabLayout.addTab(tabLayout.newTab().setText(it))
             viewList.add(SearchFragment())
         }
         tabLayout.setupWithViewPager(viewPager)
@@ -113,7 +113,7 @@ class RouteSearchActivity : AppCompatActivity() {
             onBackPressed()
         }
         more.setOnClickListener {
-            var ints = intArrayOf(0, 0)
+            val ints = intArrayOf(0, 0)
             more.getLocationInWindow(ints)
             routeSearchMorePop.showAtLocation(more, Gravity.TOP or Gravity.RIGHT,
                     TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1.0f, resources.displayMetrics).toInt(),
@@ -146,36 +146,34 @@ class RouteSearchActivity : AppCompatActivity() {
      * 创建分割线
      */
     private fun createLine(): View {
-        val view = View(this)
-        val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                DensityUtils.dp2px(this, 0.5f)
-        )
-        params.bottomMargin = DensityUtils.dp2px(this, 4.0f)
-        params.topMargin = DensityUtils.dp2px(this, 4.0f)
-        view.layoutParams = params
-        view.setBackgroundColor(Color.parseColor("#bdbdbd"))
-        return view
-
+        return View(this).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    DensityUtils.dp2px(this@RouteSearchActivity, 0.5f))
+                    .apply {
+                        bottomMargin = DensityUtils.dp2px(this@RouteSearchActivity, 4.0f)
+                        topMargin = DensityUtils.dp2px(this@RouteSearchActivity, 4.0f)
+                    }
+            setBackgroundColor(Color.parseColor("#bdbdbd"))
+        }
     }
 
     /**
      * 创建输入框
      */
     private fun createEditView(text: String, hint: String, @IdRes id: Int): EditText {
-        val edittext = EditText(this)
-        edittext.id = id
-        edittext.textSize = 16.0f
-        edittext.setTextColor(Color.BLACK)
-        edittext.setHintTextColor(Color.parseColor("#424242"))
-        edittext.setSingleLine(true)
-        edittext.hint = hint
-        edittext.setText(text)
-        edittext.background = null
-        val params =
-                LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        edittext.layoutParams = params
-        val padding = DensityUtils.dp2px(this, 8.0f)
-        edittext.setPadding(0, padding, padding, padding)
-        return edittext
+        return EditText(this).apply {
+            this.id = id
+            textSize = 16.0f
+            setTextColor(Color.BLACK)
+            setHintTextColor(Color.parseColor("#424242"))
+            setSingleLine(true)
+            this.hint = hint
+            setText(text)
+            background = null
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            val padding = DensityUtils.dp2px(this@RouteSearchActivity, 8.0f)
+            setPadding(0, padding, padding, padding)
+        }
     }
 }
