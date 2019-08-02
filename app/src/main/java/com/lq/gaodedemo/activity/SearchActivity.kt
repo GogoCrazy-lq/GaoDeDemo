@@ -19,6 +19,7 @@ import com.lq.gaodedemo.R
 import com.lq.gaodedemo.adapter.SearchAdapter
 import com.lq.gaodedemo.bean.SearchMultiItemBean
 import kotlinx.android.synthetic.main.activity_search.*
+import org.jetbrains.anko.startActivity
 
 /**
  * POI搜索
@@ -34,11 +35,11 @@ class SearchActivity : AppCompatActivity(), Inputtips.InputtipsListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         ImmersionBar
-            .with(this)
-            .statusBarDarkFont(true)
-            .statusBarColor(android.R.color.white)
-            .navigationBarColor(android.R.color.black)
-            .init()
+                .with(this)
+                .statusBarDarkFont(true)
+                .statusBarColor(android.R.color.white)
+                .navigationBarColor(android.R.color.black)
+                .init()
         initSet()
     }
 
@@ -46,16 +47,20 @@ class SearchActivity : AppCompatActivity(), Inputtips.InputtipsListener {
 
     private fun initSet() {
         recyclerView
-            .apply {
-                layoutManager = LinearLayoutManager(this@SearchActivity, RecyclerView.VERTICAL, false)
-                addItemDecoration(DividerItemDecoration(this@SearchActivity, RecyclerView.VERTICAL)
-                    .apply {
-                        setDrawable(ContextCompat.getDrawable(this@SearchActivity, R.drawable.shape_divider)!!)
-                    })
-            }.adapter = SearchAdapter(items)
-            .apply {
-                adapter = this
-            }
+                .apply {
+                    layoutManager = LinearLayoutManager(this@SearchActivity, RecyclerView.VERTICAL, false)
+                    addItemDecoration(DividerItemDecoration(this@SearchActivity, RecyclerView.VERTICAL)
+                            .apply {
+                                setDrawable(ContextCompat.getDrawable(this@SearchActivity, R.drawable.shape_divider)!!)
+                            })
+                }.adapter = SearchAdapter(items)
+                .apply {
+                    adapter = this
+                    setOnItemClickListener { adapter, view, position ->
+                        val tip = items[position].t as Tip
+                        startActivity<AimsMapDetailActivity>(Pair("tip" , tip))
+                    }
+                }
 
         edSearch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -86,14 +91,13 @@ class SearchActivity : AppCompatActivity(), Inputtips.InputtipsListener {
                     tvSearchStatus = false
                 }
                 Inputtips(this@SearchActivity,
-                    InputtipsQuery(edSearch.text.toString(), FuckApplication.cityCode)
+                        InputtipsQuery(edSearch.text.toString(), FuckApplication.cityCode)
+                                .apply {
+                                    cityLimit = true //限制为当前城市
+                                })
                         .apply {
-                            cityLimit = true //限制为当前城市
-                        })
-                    .apply {
-                        setInputtipsListener(this@SearchActivity)
-                    }.requestInputtipsAsyn()
-
+                            setInputtipsListener(this@SearchActivity)
+                        }.requestInputtipsAsyn()
             }
         })
     }

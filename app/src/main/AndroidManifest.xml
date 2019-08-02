@@ -64,19 +64,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-                android:name=".activity.RouteSearchActivity"
-                android:screenOrientation="portrait"/>
-
-        <activity
-                android:name=".activity.SmsActivity"
-                android:screenOrientation="portrait"/>
-
-        <activity
-                android:name=".activity.NearbyActivity"
-                android:screenOrientation="portrait"/>
-
+        <activity android:name=".activity.RouteSearchActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.SmsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.NearbyActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.SearchActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AimsMapDetailActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
