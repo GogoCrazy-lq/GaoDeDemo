@@ -33,15 +33,10 @@ import org.jetbrains.anko.toast
 class MainActivity : AppCompatActivity(), AMapLocationListener {
 
     private lateinit var aMap: AMap
-
     private lateinit var myLocationStyle: MyLocationStyle
-
     private lateinit var uiSettings: UiSettings
-
     private lateinit var disposable: Disposable
-
     private lateinit var mainEditLocationPop: MainEditLocationPop
-
     private lateinit var mLocationUtils: LocationUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +44,13 @@ class MainActivity : AppCompatActivity(), AMapLocationListener {
         window.exitTransition = Explode()
         setContentView(R.layout.activity_main)
 
-        ImmersionBar.with(this).statusBarDarkFont(true).fullScreen(true).transparentStatusBar()
-            .navigationBarColor(android.R.color.black).init()
+        ImmersionBar
+            .with(this)
+            .statusBarDarkFont(true)
+            .fullScreen(true)
+            .transparentStatusBar()
+            .navigationBarColor(android.R.color.black)
+            .init()
 
         mainEditLocationPop = MainEditLocationPop(this)
         mapView.onCreate(savedInstanceState)
@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity(), AMapLocationListener {
     }
 
     private fun addListener() {
-
 
         button.setOnClickListener {
             ActivityCompat.startActivity(
@@ -200,7 +199,7 @@ class MainActivity : AppCompatActivity(), AMapLocationListener {
                 FuckApplication.cityName = aMapLocation.city
                 FuckApplication.cityCode = aMapLocation.cityCode
                 toast(FuckApplication.cityName)
-                aMap.moveCamera(CameraUpdateFactory.zoomTo(16.0f)) //移动
+                aMap.moveCamera(CameraUpdateFactory.zoomTo(18.0f)) //移动缩放 3-20
             }
         }
     }

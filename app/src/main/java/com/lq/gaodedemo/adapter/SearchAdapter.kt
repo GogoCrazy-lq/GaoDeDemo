@@ -20,7 +20,7 @@ class SearchAdapter(listData: ArrayList<SearchMultiItemBean<*>>) : BaseMultiItem
         when (item.type) {
             0 -> { //
                 val tip = item.t as Tip
-                helper.setText(R.id.textView, "${tip.name} ${tip.district} ${tip.adcode}")
+                helper.setText(R.id.textView, "${tip.name} ${tip.district}")
             }
             1 -> {
                 val poiItem = item.t as PoiItem
